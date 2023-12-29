@@ -1,0 +1,109 @@
+/* Remove spinner arrows in number input for Chrome, Safari, Edge, Opera */
+#cart input::-webkit-outer-spin-button,
+#cart input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Style number input as text field in Firefox */
+#cart input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* Set height to 100% for html and body */
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Use flexbox to create a column layout */
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Allow content to grow and fill available space */
+.content {
+    flex: 1;
+}
+
+/* Ensure the footer remains at the bottom */
+.footer {
+    flex-shrink: 0;
+}
+
+/* Style for the container holding the image */
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* Style for the image */
+.fixed-width-image {
+    max-width: 100%;
+    /* Set the maximum width to 100% */
+    max-height: 100vh;
+    /* Set the maximum height to 100% of the viewport height */
+    width: auto;
+    /* Auto width to maintain aspect ratio */
+    height: auto;
+    /* Auto height to maintain aspect ratio */
+}
+
+#profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#profile-info {
+    margin-top: 20px;
+}
+
+#profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+/* Styles for the carousel */
+.carousel-inner {
+    transition: transform 0.5s ease-in-out;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-item {
+    width: 100%;
+    display: none;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.carousel-item.active {
+    display: block;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    z-index: 1;
+    color: lightblue;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.carousel-control-prev {
+    left: 10px;
+}
+
+.carousel-control-next {
+    right: 10px;
+}

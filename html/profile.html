@@ -1,0 +1,33 @@
+<div id='profile'>
+    <h2>Profile Information</h2>
+    <img id='profile-image' src='' alt='User Image'>
+    <div id='profile-info'></div>
+</div>
+
+<script>
+    pageTitle.innerHTML = 'Profile';
+
+    showUserProfile();
+
+    async function showUserProfile() {
+        const profileElement = document.getElementById('profile');
+        const profileInfoElement = document.getElementById('profile-info');
+
+        const loginUser = getSessionLoginUser();
+        if (loginUser) {
+            const userId = getSessionLoginUserId();
+            const cartQuantity = await dbGetCartQuantity(userId);
+
+            const profileImageElement = document.getElementById('profile-image');
+            profileImageElement.src = loginUser.photoURL;
+
+            profileInfoElement.innerHTML = `
+                <p>Email: ${loginUser.email}</p>
+                <p>User Name: ${loginUser.displayName}</p>
+                <p>Cart Quantity: ${cartQuantity}</p>
+            `;
+        } else {
+            profileInfoElement.innerHTML = '<p>Please log in to view your profile.</p>';
+        }
+    }
+</script>

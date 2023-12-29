@@ -1,0 +1,82 @@
+<div id='home'>
+    <!-- Carousel -->
+    <div class='image-container'>
+        <div id='carouselExampleAutoplaying' class='carousel slide mt-3' data-bs-ride='carousel'>
+            <div class='carousel-inner'>
+                <div class='carousel-item active'>
+                    <img src='/img/carousel_01.jpeg' class='fixed-width-image' alt='landscape'>
+                </div>
+                <div class='carousel-item'>
+                    <img src='/img/carousel_02.jpeg' class='fixed-width-image' alt='sunset'>
+                </div>
+                <div class='carousel-item'>
+                    <img src='/img/carousel_03.jpeg' class='fixed-width-image' alt='lake'>
+                </div>
+            </div>
+            <button class='carousel-control-prev' type='button' data-bs-target='#carouselExampleAutoplaying'
+                data-bs-slide='prev'>
+                <span class='carousel-control-prev-icon' aria-hidden='true'>&lt;</span>
+                <span class='visually-hidden'>Previous</span>
+            </button>
+            <button class='carousel-control-next' type='button' data-bs-target='#carouselExampleAutoplaying'
+                data-bs-slide='next'>
+                <span class='carousel-control-next-icon' aria-hidden='true'>&gt;</span>
+                <span class='visually-hidden'>Next</span>
+            </button>
+        </div>
+    </div>
+    <!-- End Carousel -->
+    <!-- Girl's Products -->
+    <div class='fs-1 mt-5 mb-3 border-bottom border-waring text-warning'>
+        Girl's Products
+    </div>
+
+    <div class='row' id='products-for-girl-list'></div>
+    <!-- End Girl's Products -->
+
+    <!-- Boy's Products -->
+    <div class='fs-1 mt-5 mb-3 border-bottom border-primary text-primary'>
+        Boy's Products
+    </div>
+
+    <div class='row' id='products-for-boy-list'></div>
+    <!-- End Boy's Products -->
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var carousel = document.getElementById('carouselExampleAutoplaying');
+        var interval = 1000;
+
+        setInterval(function () {
+            var activeItem = document.querySelector('.carousel-item.active');
+            var nextItem = activeItem.nextElementSibling;
+
+            if (!nextItem) {
+                nextItem = document.querySelector('.carousel-item:first-child');
+            }
+
+            activeItem.classList.remove('active');
+            activeItem.style.opacity = 0;
+            nextItem.classList.add('active');
+            nextItem.style.opacity = 1;
+        }, interval);
+    });
+    pageTitle.innerHTML = 'Home';
+    showProductForGirl();
+    showProductForBoy();
+
+    async function showProductForGirl() {
+        const productList = document.getElementById('products-for-girl-list');
+        const products = await dbGetProductByCategory("Products For Girl");
+
+        displayProducts(productList, products);
+    }
+
+    async function showProductForBoy() {
+        const productList = document.getElementById('products-for-boy-list');
+        const products = await dbGetProductByCategory("Products For Boy");
+
+        displayProducts(productList, products);
+    }
+</script>
